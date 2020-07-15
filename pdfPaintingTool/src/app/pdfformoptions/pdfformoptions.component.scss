@@ -1,0 +1,33 @@
+.pdf-options{
+    border: 1px solid #e5f0f5;
+    height: calc(100vh - 58px - 100px - 50px);
+    padding: 20px;
+    .form-group{
+        label{
+            font-size: 14px;
+            color: #607D8B;
+        }
+        .form-control{
+            border: 1px solid #e5f0f5;
+            border-radius: 0px;
+            font-size: 14px;
+        }
+        .btn-primary{
+            width: 100%;
+            background-color: #ffe1d5;
+            border-color: #f1612b;
+            color: #f1612b;
+            border-radius: 2px;
+            &:focus {
+             outline: none;
+             box-shadow: 0 0 0 0.2rem rgba(229, 62, 62, 0.14);
+            }
+            &:disabled{
+                opacity: .65;
+                background-color: #aaaaaa;
+                border-color: #aaaaaa;
+                color: #777777;
+            }
+        }   
+    }
+}

@@ -1,0 +1,25 @@
+.pdf-preview{
+    background-color: #f4f9fb;
+    border: 1px solid #e5f0f5;
+    .pdf-imgage{
+        width: 100%;
+        padding: 20px;
+        height: calc(100vh - 58px - 100px - 50px);
+    }
+}
+.pdf-preview-empty{
+    height: calc(100vh - 58px - 100px - 50px);
+    background-color: #f4f9fb;
+    border: 1px solid #e5f0f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #607D8B;
+    text-align: center;
+    flex-flow: column;
+    .empty-icon{
+        font-size: 60px;
+        color: #e1e8ef;
+        margin-bottom: 10px;
+    }
+}

@@ -1,0 +1,81 @@
+
+.app-logo{
+  width: 150px;
+  padding: 10px;
+}
+.bg-light {
+    font-weight: 100;
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #efefef;
+  }
+  .navbar-light .navbar-nav .nav-link {
+    color: #344396;
+    &:hover {
+      color: #273772;
+      cursor: pointer;
+    }
+  }
+  
+  /* breakpoint and up - mega dropdown styles */
+  @media screen and (min-width: 992px) {
+    .navbar {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+    .navbar .nav-item {
+      padding: 0.5rem 0.5rem;
+      margin: 0 0.25rem;
+    }
+  
+    /* makes the dropdown full width  */
+    .navbar .dropdown {
+      position: static;
+      cursor: pointer;
+    }
+    .dropdown:hover .dropdown-menu,
+    .dropdown.show .dropdown-menu {
+      display: block;
+      margin-top: 0; // remove the gap so it doesn't close
+      visibility: visible;
+      opacity: 1;
+      transition: visibility 0s, opacity 0.3s linear;
+    }
+    .navbar .dropdown-menu {
+      width: 100%;
+      left: 0;
+      right: 0;
+      top: 57px;
+      display: block;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0s, opacity 0.3s linear;
+      border: 1px solid #efeaea !important;
+      border-top: 0px !important;
+    }
+  
+    .dropdown-item {
+      padding: 0.75rem 1.5rem !important;
+      font-weight: 100;
+      &:hover {
+        color: #273772;
+        text-decoration: none;
+        background-color: #eaf8ff;
+        cursor: pointer;
+      }
+    }
+  
+    /* shows the dropdown menu on hover */
+    .navbar .dropdown:hover .dropdown-menu,
+    .navbar .dropdown .dropdown-menu:hover {
+      display: block;
+      visibility: visible;
+      opacity: 1;
+      transition: visibility 0s, opacity 0.3s linear;
+    }
+  
+    .navbar .dropdown-menu {
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      background-color: #fff;
+    }
+  }
+  

@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pdfpreviewpage.component.scss']
 })
 export class PdfpreviewpageComponent implements OnInit {
+  pdfSrc = "/assets/source-pdf/test.pdf";
 
   constructor() { }
 

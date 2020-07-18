@@ -17,9 +17,16 @@
     color: #607D8B;
     text-align: center;
     flex-flow: column;
+    position: relative;
+    overflow: scroll;
     .empty-icon{
         font-size: 60px;
         color: #e1e8ef;
         margin-bottom: 10px;
+    }
+    pdf-viewer{
+        position: absolute;
+        top: 0;
+        left: 0;
     }
 }

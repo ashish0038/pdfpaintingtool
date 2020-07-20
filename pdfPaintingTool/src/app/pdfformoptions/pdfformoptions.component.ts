@@ -16,26 +16,38 @@ export class PdfformoptionsComponent implements OnInit {
   reportFooters:Array<string> = new Array<string>();
   reportStamps:Array<string> = new Array<string>();
 
+  constPageZoomSize = 'Select Page Resize';
+  constPageHeader = 'Select Header';
+  constPageFooter = 'Select Footer';
+  constPageStamp = 'Select Stamp';
+  constStampPosition = 'Select Stamp Position';
+
+  pageZoomSize = this.constPageZoomSize;
+  pageHeader = this.constPageHeader;
+  pageFooter = this.constPageFooter;
+  pageStamp = this.constPageStamp;
+  stampPosition = this.constStampPosition;
+
   constructor(private readonly uploadService: UploadService,
     private readonly dataService:DataService<any>) { }
 
   ngOnInit() {
     this.dataService.get(environment.headers).subscribe(data=>{
-      data.files.unshift('Select Header');
+      data.files.unshift(this.constPageHeader);
       this.reportHeaders = data.files;
     },err=>{
       console.log(err);
     });
 
     this.dataService.get(environment.footers).subscribe(data=>{
-      data.files.unshift('Select Footer');
+      data.files.unshift(this.constPageFooter);
       this.reportFooters = data.files;
     },err=>{
       console.log(err);
     });
 
     this.dataService.get(environment.stamps).subscribe(data=>{
-      data.files.unshift('Select Stamp');
+      data.files.unshift(this.constPageStamp);
       this.reportStamps = data.files;
     },err=>{
       console.log(err);

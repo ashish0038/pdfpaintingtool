@@ -1,0 +1,18 @@
+{
+  "name": "pdf-painting-tool-server",
+  "version": "1.0.0",
+  "description": "PDF painting tool server which is used for serve API",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "easy-pdf-merge": "^0.2.2",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.7-alpha.4"
+  }
+}

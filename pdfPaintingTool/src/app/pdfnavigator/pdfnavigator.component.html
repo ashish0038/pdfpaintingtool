@@ -12,8 +12,11 @@
                         <div class="pdf-previous">
                             <button class="btn"><i class="fa fa-caret-left"></i></button>
                         </div>
-                        <div class="pdf-box-container">
-                            <div class="pdf-box pdf-active">
+                        <div class="pdf-box-container" *ngFor="let item of documentList">
+                            <div class="pdf-box {{item.activeClass}}" (click)="displayFile(item)">
+                                PDF/IMAGE {{item?.pdfFilePath}}
+                            </div>
+                            <!-- <div class="pdf-box">
                                 PDF/IMAGE
                             </div>
                             <div class="pdf-box">
@@ -21,10 +24,7 @@
                             </div>
                             <div class="pdf-box">
                                 PDF/IMAGE
-                            </div>
-                            <div class="pdf-box">
-                                PDF/IMAGE
-                            </div>
+                            </div> -->
                         </div>
                         <div class="pdf-next">
                             <button class="btn"><i class="fa fa-caret-right"></i></button>
@@ -34,6 +34,8 @@
                 <div class="col-sm-1 p-0">
                     <div class="add_more_file">
                         <button class="btn"><i class="fa fa-plus"></i></button>
+                        <button class="btn" (click)="removeDocument()"><i class="fa fa-minus"></i></button>
+                        <app-file-upload></app-file-upload>
                     </div>
                 </div>
             </div>

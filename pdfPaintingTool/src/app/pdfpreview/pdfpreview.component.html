@@ -5,12 +5,12 @@
                 <app-pdfpreviewpage></app-pdfpreviewpage>
             </div>
             <div class="col-sm-4">
-                <app-pdfformoptions></app-pdfformoptions>
+                <app-pdfformoptions [documentList]="documentList"></app-pdfformoptions>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <app-pdfnavigator></app-pdfnavigator>
+                <app-pdfnavigator [(documentList)]="documentList"></app-pdfnavigator>
             </div>
         </div>
     </div>

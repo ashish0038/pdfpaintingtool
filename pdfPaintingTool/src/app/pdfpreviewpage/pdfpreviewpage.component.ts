@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PubSubService } from '../services/pub-sub.service';
 
 @Component({
   selector: 'app-pdfpreviewpage',
@@ -6,11 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pdfpreviewpage.component.scss']
 })
 export class PdfpreviewpageComponent implements OnInit {
-  pdfSrc = "/assets/source-pdf/test.pdf";
+  pdfSrc = '';
+  zoomParameter = 1;
 
-  constructor() { }
+  constructor(private readonly pubSubService: PubSubService) { }
 
   ngOnInit() {
+    this.pubSubService.getfileViewSubject().subscribe(data => {
+      if (data != null)
+        this.pdfSrc = data.pdfFilePath
+      else
+        this.pdfSrc = '';
+    });
   }
 
 }

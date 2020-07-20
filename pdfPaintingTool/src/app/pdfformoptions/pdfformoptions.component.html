@@ -12,31 +12,19 @@
     <div class="form-group">
         <label for="exampleFormControlSelect1">Header</label>
         <select class="form-control" id="exampleFormControlSelect1">
-            <option>Select Header</option>
-            <option>Header 1</option>
-            <option>Header 2</option>
-            <option>Header 3</option>
-            <option>Header 4</option>
+            <option *ngFor="let obj of reportHeaders" [value]="obj">{{obj}}</option>
         </select>
     </div>
     <div class="form-group">
         <label for="exampleFormControlSelect1">Footer</label>
         <select class="form-control" id="exampleFormControlSelect1">
-            <option>Select Footer</option>
-            <option>Footer 1</option>
-            <option>Footer 2</option>
-            <option>Footer 3</option>
-            <option>Footer 4</option>
+            <option *ngFor="let obj of reportFooters" [value]="obj">{{obj}}</option>
         </select>
     </div>
     <div class="form-group">
         <label for="exampleFormControlSelect1">Stamp</label>
         <select class="form-control" id="exampleFormControlSelect1">
-            <option>Select Stamp</option>
-            <option>Stamp 1</option>
-            <option>Stamp 2</option>
-            <option>Stamp 3</option>
-            <option>Stamp 4</option>
+            <option *ngFor="let obj of reportStamps" [value]="obj">{{obj}}</option>
         </select>
     </div>
     <div class="form-group">
@@ -51,10 +39,10 @@
     </div>
     <div class="form-group row">
         <div class="col-sm-6">
-          <button type="submit" class="btn btn-primary" disabled>Save as PDF</button>
+          <button type="button" (click)="mergePdf()" class="btn btn-primary"  [disabled]="!(documentList.length > 0)">Save as PDF</button>
         </div>
         <div class="col-sm-6">
-            <button type="submit" class="btn btn-primary" disabled>Print</button>
+            <button type="button" (click)="printFile()"  class="btn btn-primary" [disabled]="!(documentList.length > 0)">Print</button>
           </div>
       </div>
 </div>

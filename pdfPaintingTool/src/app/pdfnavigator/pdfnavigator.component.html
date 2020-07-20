@@ -1,10 +1,11 @@
 
 <div class="pdf-navigator">
-    <div class="upload-file d-none">
+    <div class="upload-file" *ngIf="!(!!documentList && documentList.length > 0)">
         <label for="et_pb_contact_brand_file_request_0" class="et_pb_contact_form_label">DRAG & DROP FILES</label>
         <input type="file" id="et_pb_contact_brand_file_request_0" class="file-upload">
+        <app-file-upload></app-file-upload>
     </div>
-    <div class="pdf-navigator-box">
+    <div class="pdf-navigator-box" *ngIf="!!documentList && documentList.length > 0">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-11 p-0">

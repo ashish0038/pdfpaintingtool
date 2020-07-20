@@ -1,3 +1,6 @@
-<input type="file" (change)="fileChange($event)"
+
+
+    <label for="et_pb_contact_form_label" class="et_pb_contact_form_label">DRAG & DROP FILES</label>
+    <input id="et_pb_contact_form_label" type="file" class="file-upload" (change)="fileChange($event)"
 #fileInput (click)="fileInput.value = null" value=""
  placeholder="Upload file" accept=".pdf">

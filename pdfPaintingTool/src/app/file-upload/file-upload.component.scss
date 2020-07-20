@@ -1,0 +1,23 @@
+
+    .et_pb_contact_form_label {
+        color: #65818e;
+        font-size: 14px;
+        width: 40%;
+        margin: 15px auto;
+        height: calc(100% - 31px);
+        border: 1px solid #e5f0f5;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    input[id="et_pb_contact_form_label"] {
+        display: none;
+    }
+    label[for="et_pb_contact_form_label"] {
+      cursor: pointer;
+      transition: 400ms ease;
+      &:hover{
+          background-color: #f4f9fb;
+      }
+    }

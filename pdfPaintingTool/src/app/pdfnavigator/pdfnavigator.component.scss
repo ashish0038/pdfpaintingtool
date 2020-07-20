@@ -4,28 +4,7 @@
     height: 100px;
     .upload-file{
         height: 100%;
-        .et_pb_contact_form_label {
-            color: #65818e;
-            font-size: 14px;
-            width: 40%;
-            margin: 15px auto;
-            height: calc(100% - 31px);
-            border: 1px solid #e5f0f5;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        input[id="et_pb_contact_brand_file_request_0"] {
-            display: none;
-        }
-        label[for="et_pb_contact_brand_file_request_0"] {
-          cursor: pointer;
-          transition: 400ms ease;
-          &:hover{
-              background-color: #f4f9fb;
-          }
-        }
+        
     }
     .pdf-navigator-box{
         padding: 10px;
@@ -51,6 +30,7 @@
                 border: 1px solid #e5f0f5;
                 font-size: 12px;
                 margin-right: 10px;
+                word-break: break-word;
                 &:last-child{
                     margin-right: 0px;
                 }
@@ -93,9 +73,9 @@
         }
         .add_more_file{
             .btn{
-                width: 100%;
+                width: 50%;
                 height: 78px;
-                display: flex;
+                display: inline-flex;
                 justify-content: center;
                 align-items: center;
                 border: 1px solid #e5f0f5;

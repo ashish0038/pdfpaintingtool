@@ -39,6 +39,7 @@ app.post('/api/pdf-upload', (req, res) => {
 
 app.post('/api/merge-pdf', (req, res) => {
     const files = req.body.files;
+    const resultFileName = `ResultPdf${getRandom()}.pdf`
     let requiredFileToMerge = [];
     if (Array.isArray(files)) {
         files.forEach(item => {

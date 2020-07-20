@@ -31,3 +31,43 @@
         display: block;
     }
 }
+.page-header{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 9999;
+}
+
+.page-footer{
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    z-index: 9999;
+}
+
+.page-stamp{
+    position: absolute;
+    z-index: 99999;
+    bottom: 0px;
+    right: 0px;
+}
+
+.page-25per{
+    bottom:75%;
+    right: 0px;
+}
+
+.page-50per{
+    bottom:50%;
+    right: 0px;
+}
+
+.page-75per{
+    bottom:25%;
+    right: 0px;
+}
+
+.page-100per{
+    bottom:0;
+    right: 0px;
+}

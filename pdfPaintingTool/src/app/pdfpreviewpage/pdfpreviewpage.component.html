@@ -6,7 +6,22 @@
     <span *ngIf="!pdfSrc">PREVIEW NOT AVAILABLE</span>
     <div *ngIf="!!pdfSrc">
         <pdf-viewer [src]="pdfSrc" 
-        [render-text]="true" [zoom]="zoomParameter"></pdf-viewer>
+        [render-text]="true" [zoom]="zoomParameter">
+       
+    </pdf-viewer>
+    </div>
+
+    <div id="pdfHeader" *ngIf="!!pdfHeaderSrc" class="page-header">
+        <img [src]="pdfHeaderSrc" /> 
+    </div>
+   
+
+    <div id="pdfFooter" *ngIf="!!pdfFooterSrc" class="page-footer">
+        <img [src]="pdfFooterSrc" /> 
+    </div>
+
+    <div id="pdfStamp" *ngIf="!!pdfStampSrc" class="page-stamp {{pdfStampClass}}">
+        <img [src]="pdfStampSrc" /> 
     </div>
    
 </div>

@@ -3,6 +3,8 @@ import { Documents } from '../models/document.model';
 import { UploadService } from '../services/upload-service.service';
 import { DataService } from '../services/data.service';
 import { environment } from 'src/environments/environment';
+import { PDFOptions } from '../models/pdf.options.model';
+import { PubSubService } from '../services/pub-sub.service';
 
 @Component({
   selector: 'app-pdfformoptions',
@@ -15,21 +17,20 @@ export class PdfformoptionsComponent implements OnInit {
   reportHeaders:Array<string> = new Array<string>();
   reportFooters:Array<string> = new Array<string>();
   reportStamps:Array<string> = new Array<string>();
-
+  
   constPageZoomSize = 'Select Page Resize';
   constPageHeader = 'Select Header';
   constPageFooter = 'Select Footer';
   constPageStamp = 'Select Stamp';
   constStampPosition = 'Select Stamp Position';
 
-  pageZoomSize = this.constPageZoomSize;
-  pageHeader = this.constPageHeader;
-  pageFooter = this.constPageFooter;
-  pageStamp = this.constPageStamp;
-  stampPosition = this.constStampPosition;
+  pdfOptions:PDFOptions = new PDFOptions(this.constPageZoomSize,this.constPageHeader,
+    this.constPageFooter,this.constPageStamp,this.constStampPosition);
+
 
   constructor(private readonly uploadService: UploadService,
-    private readonly dataService:DataService<any>) { }
+    private readonly dataService:DataService<any>,
+    private readonly pubSubService: PubSubService) { }
 
   ngOnInit() {
     this.dataService.get(environment.headers).subscribe(data=>{
@@ -83,5 +84,10 @@ export class PdfformoptionsComponent implements OnInit {
         console.log(error);
       });
 
+  }
+
+  brodCastPdfOptions(newValue,refElement){
+    this.pdfOptions[refElement] = newValue;
+    this.pubSubService.publishpdfOptions(this.pdfOptions);
   }
 }

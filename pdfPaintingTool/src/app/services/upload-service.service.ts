@@ -19,6 +19,17 @@ export class UploadService {
         return this.http.post(url + "?random=" + Math.random(), formData, options)
     }
 
+    saveUpdateFile(url: string, file: Blob,fileName:string): Observable<any> {
+        let formData = new FormData();
+        formData.append('uploadedFile', file);
+        formData.append('fileName', fileName);
+        let params = new HttpParams();
+        const options = {
+            params: params,
+        };
+        return this.http.post(url + "?random=" + Math.random(), formData, options)
+    }
+
     mergeFile(url: string, files: Array<string>): Observable<any> {
         let formData = new FormData();
         files.forEach(item=>{

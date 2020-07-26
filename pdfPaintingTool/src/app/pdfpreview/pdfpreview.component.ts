@@ -17,9 +17,14 @@ export class PdfpreviewComponent implements OnInit {
       this.documentList.forEach(element => {
         element.activeClass = '';
       });
-      data.fileIndex = this.getLastIndexForFileCollection() + 1;
-      data.activeClass = 'pdf-active';
-      this.documentList.push(data);
+      if (this.documentList.filter(x => x.pdfFilePath === data.pdfFilePath).length <= 0) {
+        data.fileIndex = this.getLastIndexForFileCollection() + 1;
+        data.activeClass = 'pdf-active';
+        this.documentList.push(data);
+      }
+      else {
+        this.documentList.filter(x => x.pdfFilePath === data.pdfFilePath)[0].activeClass = 'pdf-active';
+      }
     });
   }
 

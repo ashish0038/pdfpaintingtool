@@ -3,4 +3,7 @@ export class Documents {
     pdfFilePath: string;
     imageFilePath: string;
     activeClass: string;
+    imgHeight: number;
+    imgWidth: number;
+    processed: boolean;
 }

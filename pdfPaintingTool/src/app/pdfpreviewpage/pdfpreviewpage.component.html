@@ -1,27 +1,25 @@
-<!-- <div class="pdf-preview d-none" >
-    <img src="../../assets/images/pdfpreive.png" class="pdf-imgage">
-</div> -->
-<div class="pdf-preview-empty ">
-    <i class="fa fa-file-pdf-o empty-icon" *ngIf="!pdfSrc"></i>
-    <span *ngIf="!pdfSrc">PREVIEW NOT AVAILABLE</span>
-    <div *ngIf="!!pdfSrc">
-        <pdf-viewer [src]="pdfSrc" 
-        [render-text]="true" [zoom]="zoomParameter">
-       
-    </pdf-viewer>
-    </div>
+<div class="pdf-preview-empty">
+    <i class="fa fa-file-pdf-o empty-icon" *ngIf="!document?.imgHeight"></i>
+    <span *ngIf="!document?.imgHeight">PREVIEW NOT AVAILABLE</span>
+    <div *ngIf="!!document?.imgHeight" id="imageCapture" [style.width.px]="document?.imgWidth" 
+        [style.height.px]="document?.imgHeight" #pdfViewer>
+        <div id="pdfHeader" *ngIf="!!pdfHeaderSrc" class="page-header">
+            <img [src]="pdfHeaderSrc" class="{{imgClass}}" />
+        </div>
 
-    <div id="pdfHeader" *ngIf="!!pdfHeaderSrc" class="page-header">
-        <img [src]="pdfHeaderSrc" /> 
-    </div>
-   
+        <img id="pdf-viewer" src="{{document?.imageFilePath}}?x={{imgRefreshParameter}}" [width]="document?.imgWidth * zoomParameter"
+            [height]="document?.imgHeight * zoomParameter" />
 
-    <div id="pdfFooter" *ngIf="!!pdfFooterSrc" class="page-footer">
-        <img [src]="pdfFooterSrc" /> 
-    </div>
+        <div id="pdfFooter" *ngIf="!!pdfFooterSrc" class="page-footer">
+            <img [src]="pdfFooterSrc" class="{{imgClass}}" />
+        </div>
 
-    <div id="pdfStamp" *ngIf="!!pdfStampSrc" class="page-stamp {{pdfStampClass}}">
-        <img [src]="pdfStampSrc" /> 
+        <div class="page-footer-pageno" *ngIf="!document.processed">
+            <input type="text" id="pageNumber" style="border: none;background: transparent;">
+        </div>
+
+        <div id="pdfStamp" *ngIf="!!pdfStampSrc" class="page-stamp {{pdfStampClass}}">
+            <img [src]="pdfStampSrc" class="{{imgClass}}" />
+        </div>
     </div>
-   
 </div>

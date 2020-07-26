@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { UploadService } from 'src/app/services/upload-service.service';
 import { Documents } from '../models/document.model';
@@ -11,6 +11,8 @@ import { HttpResponse } from '@angular/common/http';
   styleUrls: ['./file-upload.component.scss']
 })
 export class FileUploadComponent implements OnInit {
+  @Input('forSmallWindow') forSmallWindow : string;
+
   constructor(private readonly uploadService: UploadService,
     private readonly pubSubService: PubSubService) { }
 
@@ -34,9 +36,10 @@ export class FileUploadComponent implements OnInit {
       data => {
         let fileData: Documents = new Documents();
           fileData.pdfFilePath = environment.baseUrl + '/files/import/' + data.fileName;
-          fileData.imageFilePath = environment.baseUrl + '/files/export/' + data.imgFileName;
+          fileData.imageFilePath = environment.baseUrl + '/files/import/' + data.imgfileName;
+          fileData.imgHeight =  data.imgHeight;
+          fileData.imgWidth =  data.imgWidth;
           this.pubSubService.publishfileUpload(fileData);
-          this.pubSubService.publishfileView(fileData);
       },
       (err) => {
         console.log("Upload Error:", err);

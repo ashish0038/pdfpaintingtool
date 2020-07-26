@@ -1,7 +1,6 @@
-
 <div class="pdf-navigator">
     <div class="upload-file" *ngIf="!(!!documentList && documentList.length > 0)">
-        <app-file-upload></app-file-upload>
+        <app-file-upload [forSmallWindow]="'false'"></app-file-upload>
     </div>
     <div class="pdf-navigator-box" *ngIf="!!documentList && documentList.length > 0">
         <div class="container-fluid">
@@ -13,27 +12,18 @@
                         </div>
                         <div class="pdf-box-container" *ngFor="let item of documentList">
                             <div class="pdf-box {{item.activeClass}}" (click)="displayFile(item)">
-                                PDF/IMAGE {{item?.pdfFilePath}}
+                                <img src="{{item?.imageFilePath}}?x={{imgRefreshParameter}}"
+                                    style="height: 75px;width: 75px;" />
                             </div>
-                            <!-- <div class="pdf-box">
-                                PDF/IMAGE
-                            </div>
-                            <div class="pdf-box">
-                                PDF/IMAGE
-                            </div>
-                            <div class="pdf-box">
-                                PDF/IMAGE
-                            </div> -->
                         </div>
                         <div class="pdf-next">
-                            <button class="btn"><i class="fa fa-caret-right"></i></button>
+                            <button class="btn" (click)="changeLocationTab()"><i class="fa fa-caret-right"></i></button>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-2 p-0">
                     <div class="add_more_file">
-                        <button class="btn"><i class="fa fa-plus"></i> <app-file-upload></app-file-upload></button>
-                        <button class="btn" (click)="removeDocument()"><i class="fa fa-minus"></i></button>
+                        <app-file-upload [forSmallWindow]="'true'"></app-file-upload>
                     </div>
                 </div>
             </div>

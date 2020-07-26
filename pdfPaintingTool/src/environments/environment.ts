@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   baseUrl: 'http://localhost:4201',
+  saveImage: 'http://localhost:4201/api/save-image',
   pdfFileUpload: 'http://localhost:4201/api/pdf-upload',
   mergePdfFile: 'http://localhost:4201/api/merge-pdf',
   headers: 'http://localhost:4201/api/get-headers',

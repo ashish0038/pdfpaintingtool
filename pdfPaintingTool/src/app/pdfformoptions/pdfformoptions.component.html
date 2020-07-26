@@ -1,7 +1,7 @@
 <div class="pdf-options">
     <div class="form-group">
         <label for="exampleFormControlSelect1">Page Resize</label>
-        <select (ngModelChange)="brodCastPdfOptions($event,'pageZoomSize')" [ngModel]="pdfOptions.pageZoomSize"
+        <select [disabled]="disableOptions"  (ngModelChange)="brodCastPdfOptions($event,'pageZoomSize')" [ngModel]="pdfOptions.pageZoomSize"
             class="form-control" id="exampleFormControlSelect1">
             <option [ngValue]="constPageZoomSize">{{constPageZoomSize}}</option>
             <option [ngValue]="'25%'">25%</option>
@@ -12,28 +12,28 @@
     </div>
     <div class="form-group">
         <label for="exampleFormControlSelect1">Header</label>
-        <select (ngModelChange)="brodCastPdfOptions($event,'pageHeader')" [ngModel]="pdfOptions.pageHeader"
+        <select [disabled]="disableOptions" (ngModelChange)="brodCastPdfOptions($event,'pageHeader')" [ngModel]="pdfOptions.pageHeader"
             class="form-control" id="exampleFormControlSelect1">
             <option *ngFor="let obj of reportHeaders" [ngValue]="obj">{{obj}}</option>
         </select>
     </div>
     <div class="form-group">
         <label for="exampleFormControlSelect1">Footer</label>
-        <select (ngModelChange)="brodCastPdfOptions($event,'pageFooter')" [ngModel]="pdfOptions.pageFooter"
+        <select [disabled]="disableOptions" (ngModelChange)="brodCastPdfOptions($event,'pageFooter')" [ngModel]="pdfOptions.pageFooter"
             class="form-control" id="exampleFormControlSelect1">
             <option *ngFor="let obj of reportFooters" [ngValue]="obj">{{obj}}</option>
         </select>
     </div>
     <div class="form-group">
         <label for="exampleFormControlSelect1">Stamp</label>
-        <select (ngModelChange)="brodCastPdfOptions($event,'pageStamp')" [ngModel]="pdfOptions.pageStamp" class="form-control"
+        <select [disabled]="disableOptions" (ngModelChange)="brodCastPdfOptions($event,'pageStamp')" [ngModel]="pdfOptions.pageStamp" class="form-control"
             id="exampleFormControlSelect1">
             <option *ngFor="let obj of reportStamps" [ngValue]="obj">{{obj}}</option>
         </select>
     </div>
     <div class="form-group">
         <label for="exampleFormControlSelect1">Stamp Position</label>
-        <select (ngModelChange)="brodCastPdfOptions($event,'stampPosition')" [ngModel]="pdfOptions.stampPosition"
+        <select [disabled]="disableOptions" (ngModelChange)="brodCastPdfOptions($event,'stampPosition')" [ngModel]="pdfOptions.stampPosition"
             class="form-control" id="exampleFormControlSelect1">
             <option [ngValue]="constStampPosition">{{constStampPosition}}</option>
             <option [ngValue]="'25%'">25%</option>
@@ -44,12 +44,16 @@
     </div>
     <div class="form-group row">
         <div class="col-sm-6">
-            <button type="button" (click)="mergePdf()" class="btn btn-primary"
-                [disabled]="!(documentList.length > 0)">Save as PDF</button>
+            <button type="button" [disabled]="disableOptions" (click)="savePdf()" class="btn btn-primary">Save as PDF</button>
         </div>
         <div class="col-sm-6">
-            <button type="button" (click)="printFile()" class="btn btn-primary"
-                [disabled]="!(documentList.length > 0)">Print</button>
+            <button type="button" [disabled]="disableOptions" (click)="printFile()" class="btn btn-primary">Print</button>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-12">
+            <button type="button" (click)="mergePdf()" class="btn btn-primary"
+                [disabled]="!(documentList?.length > 0)">Download PDF</button>
         </div>
     </div>
 </div>

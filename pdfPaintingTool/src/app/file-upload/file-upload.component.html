@@ -1,6 +1,14 @@
 
 
-    <label for="et_pb_contact_form_label" class="et_pb_contact_form_label">DRAG & DROP FILES</label>
-    <input id="et_pb_contact_form_label" type="file" class="file-upload" (change)="fileChange($event)"
+    <label *ngIf="forSmallWindow == 'false'" for="et_pb_contact_form_label" class="et_pb_contact_form_label">DRAG & DROP FILES</label>
+    <input id="et_pb_contact_form_label" type="file" class="file-upload"
+     (change)="fileChange($event)"
 #fileInput (click)="fileInput.value = null" value=""
  placeholder="Upload file" accept=".pdf">
+ 
+ <button *ngIf="forSmallWindow == 'true'" class="btn"
+ onclick="document.getElementById('et_pb_contact_form_label').click();">
+ <i class="fa fa-plus"></i></button>
+
+
+ 

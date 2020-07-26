@@ -24,7 +24,7 @@
         color: #e1e8ef;
         margin-bottom: 10px;
     }
-    pdf-viewer{
+    #pdf-viewer{
         position: absolute;
         top: 0;
         left: 0;
@@ -36,6 +36,7 @@
     left: 0px;
     top: 0px;
     z-index: 9999;
+    text-align: left;
 }
 
 .page-footer{
@@ -43,6 +44,18 @@
     left: 0px;
     bottom: 0px;
     z-index: 9999;
+    text-align: left;
+}
+
+.page-footer-pageno{
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    z-index: 9999;
+    text-align: right;
+    input{
+        text-align: right;
+    }
 }
 
 .page-stamp{
@@ -50,6 +63,7 @@
     z-index: 99999;
     bottom: 0px;
     right: 0px;
+    text-align: right;
 }
 
 .page-25per{
@@ -70,4 +84,28 @@
 .page-100per{
     bottom:0;
     right: 0px;
+}
+
+.img-25per{
+    height: 25%;
+    width: 25%;
+}
+
+.img-50per{
+    height: 50%;
+    width: 50%;
+}
+
+.img-75per{
+    height: 75%;
+    width: 75%;
+}
+
+.img-100per{
+    height: 100%;
+    width: 100%;
+}
+
+.canvasImg{
+    visibility: hidden;
 }

@@ -6,6 +6,9 @@ const fileUpload = require('express-fileupload');
 const bodyParser = require("body-parser");
 const merge = require('easy-pdf-merge');
 const fs = require('fs');
+const pdf = require('pdf-poppler');
+const sizeOf = require('image-size');
+const imagesToPdf = require("images-to-pdf")
 
 const port = 4201;
 
@@ -27,41 +30,55 @@ app.use(bodyParser.json());
 
 app.use(fileUpload());
 
-app.post('/api/pdf-upload', (req, res) => {
-    const fileName = `pdf${getRandom()}.pdf`;
+app.post('/api/save-image', (req, res) => {
     const uploadFile = req.files.uploadedFile;
-    uploadFile.mv(path.join(__dirname, `/files/import/${fileName}`), (err) => {
-        if (err)
-            res.send({ sucess: false, error: err });
-        res.send({ sucess: true, fileName: fileName });
+    const imageFileName = req.body.fileName;
+    uploadFile.mv(path.join(__dirname, `/files/import/${imageFileName}`), (err) => {
+        res.send({ sucess: true });
     });
 });
 
-app.post('/api/merge-pdf', (req, res) => {
-    const files = req.body.files;
+app.post('/api/pdf-upload', (req, res) => {
+    const fileName = `pdf${getRandom()}.pdf`;
+    const fileNameJpg = `pdf${getRandom()}`;
+    const uploadFile = req.files.uploadedFile;
+    uploadFile.mv(path.join(__dirname, `/files/import/${fileName}`), (err) => {
+        const file = path.join(__dirname, `/files/import/${fileName}`);
+        const opts = {
+            format: 'jpeg',
+            out_dir: path.dirname(file),
+            out_prefix: fileNameJpg,
+            page: null
+        }
+        pdf.convert(file, opts)
+            .then(() => {
+                const dimensions = sizeOf(path.join(__dirname, `/files/import/${fileNameJpg}-1.jpg`));
+                res.send({
+                    sucess: true, imgfileName: `${fileNameJpg}-1.jpg`,
+                    fileName: `${fileName}`, imgWidth: dimensions.width,
+                    imgHeight: dimensions.height
+                });
+            })
+            .catch(err => {
+                res.send({ sucess: false, error: err });
+            })
+    });
+});
+
+app.post('/api/merge-pdf', async (req, res) => {
     const resultFileName = `ResultPdf${getRandom()}.pdf`
-    let requiredFileToMerge = [];
-    if (Array.isArray(files)) {
-        files.forEach(item => {
-            let filePath = path.join(__dirname, `/files/import/${item}`);
-            if (fs.existsSync(filePath)) {
-                requiredFileToMerge.push(filePath);
-            }
-        });
-        merge(requiredFileToMerge, path.join(__dirname, `/files/import/${resultFileName}`),
-            (err) => {
-                if (err)
-                    res.send({ sucess: false, error: err });
-                res.send({ sucess: true, fileName: resultFileName });
-            });
+    const jpgfiles = req.body.files;
+    var files = [];
+    jpgfiles.forEach(x => {
+        files.push(path.join(__dirname, `/files/import/${x}`));
+    });
+    await imagesToPdf(files, path.join(__dirname, `/files/import/${resultFileName}`));
+
+    if (fs.existsSync(path.join(__dirname, `/files/import/${resultFileName}`))) {
+        res.send({ sucess: true, fileName: resultFileName });
     }
     else {
-        if (fs.existsSync(path.join(__dirname, `/files/import/${files}`))) {
-            res.send({ sucess: true, fileName: files });
-        }
-        else {
-            res.send({ sucess: false, error: 'File not found.' });
-        }
+        res.send({ sucess: false, error: 'Error to process generate PDF.' });
     }
 });
 
